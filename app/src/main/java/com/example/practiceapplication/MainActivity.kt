@@ -3,10 +3,13 @@ package com.example.practiceapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.practiceapplication.databinding.ActivityMainBinding
 import com.example.practiceapplication.presentation.TestViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -23,8 +26,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.button.setOnClickListener {
-            val hereViewModel = viewModel
-            Log.e("Check", "${viewModel.testRepository}")
+            runBlocking {
+                Toast.makeText(baseContext, "button clicked", Toast.LENGTH_SHORT).show()
+                delay(10000)
+            }
         }
     }
 }
